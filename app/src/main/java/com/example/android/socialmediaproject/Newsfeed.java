@@ -45,17 +45,14 @@ public class Newsfeed extends AppCompatActivity implements Feed.OnFragmentIntera
                 switch (item.getItemId()) {
 
                     case R.id.nav_home:
-                        mMainNav.setItemBackgroundResource(R.color.colorPrimary);
                         setFragment(homeFragment);
                         return true;
 
                     case R.id.nav_notif:
-                        mMainNav.setItemBackgroundResource(R.color.colorAccent);
                         setFragment(notificationsFragment);
                         return true;
 
                     case R.id.nav_account:
-                        mMainNav.setItemBackgroundResource(R.color.colorPrimaryDark);
                         setFragment(accountFragment);
                         return true;
 

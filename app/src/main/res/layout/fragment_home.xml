@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".HomeFragment">
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
         <!--TODO: Update blank fragment layout -->
         <android.support.design.widget.TabLayout
@@ -17,13 +14,25 @@
             android:background="@color/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/feed_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Feed"/>
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/explore_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Explore"/>
+
+        </android.support.design.widget.TabLayout>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/news_feed_vp_frag"
             android:layout_width="match_parent"
-            android:layout_height="463dp" />
+            android:layout_height="match_parent" />
 
-    </RelativeLayout>
-
-</FrameLayout>
+</LinearLayout>

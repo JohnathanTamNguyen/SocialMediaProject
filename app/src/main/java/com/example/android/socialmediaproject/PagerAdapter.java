@@ -2,25 +2,26 @@ package com.example.android.socialmediaproject;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
 
-    int mNoOfTabs;
-    public PagerAdapter(FragmentManager fm, int NumberOfTabs) {
+public class PagerAdapter extends FragmentPagerAdapter {
+
+    private int numOfTabs;
+
+    PagerAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);
-        this.mNoOfTabs = NumberOfTabs;
+        this.numOfTabs = numOfTabs;
+
     }
 
     @Override
     public Fragment getItem(int position) {
-        switch(position) {
+        switch (position) {
             case 0:
-                Feed tab1 = new Feed();
-                return tab1;
+                return new Feed();
             case 1:
-                Explore tab2 = new Explore();
-                return tab2;
+                return new Explore();
             default:
                 return null;
         }
@@ -28,6 +29,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return mNoOfTabs;
+        return numOfTabs;
     }
 }
