@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.socialmediaproject">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".Newsfeed"></activity>
+        <activity android:name=".Newsfeed" />
+        <activity android:name=".register_birthday" />
+        <activity android:name=".register_picture"></activity>
     </application>
 
 </manifest>
