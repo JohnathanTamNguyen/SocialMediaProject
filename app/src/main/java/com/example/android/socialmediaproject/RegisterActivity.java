@@ -42,32 +42,39 @@ public class RegisterActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.register_email);
         password = (EditText) findViewById(R.id.register_password);
         passwordConfirm = (EditText) findViewById(R.id.register_confirm_password);
-        dateOfBirth = (EditText) findViewById(R.id.date_of_birth);
+//        dateOfBirth = (EditText) findViewById(R.id.date_of_birth);
 
-        dateOfBirth.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() == 2 || s.length() == 5){
-                    dateOfBirth.setText(s + "/");
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+//        dateOfBirth.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if(s.length() == 2 || s.length() == 5){
+//                    dateOfBirth.setText(s + "/");
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //changeActivity(RegisterActivity.this, LoginActivity.class);
-                sendRegisterInfo(username, email, password, passwordConfirm, dateOfBirth);
+                //changeActivity(RegisterActivity.this, register_birthday.class);
+                //sendRegisterInfo(username, email, password, passwordConfirm, dateOfBirth);
+                Intent intent = new Intent(RegisterActivity.this, register_birthday.class);
+                HashMap<String, String> params = new HashMap<String, String>();
+                params.put("email", email.getText().toString());
+                params.put("username", username.getText().toString());
+                params.put("password", password.getText().toString());
+                intent.putExtra("userData", params);
+                startActivity(intent);
             }
         });
     }
@@ -88,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
         params.put("email", email.getText().toString());
         params.put("username", username.getText().toString());
         params.put("password", password.getText().toString());
+        params.put("passwordConfirm", passwordConfirm.getText().toString());
         params.put("date_of_birth", date_of_birth.getText().toString());
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest

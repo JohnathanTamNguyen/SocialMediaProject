@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
+        android:inputType="textPassword"
         android:hint="Password" />
 
     <EditText
@@ -48,17 +49,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
+        android:inputType="textPassword"
         android:hint="Confirm Password" />
 
-    <EditText
-        android:id="@+id/date_of_birth"
-        android:layout_marginTop="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:hint="Birthday (mm/dd/yyyy)"
-        android:inputType="date" />
+    <!--<EditText-->
+        <!--android:id="@+id/date_of_birth"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="80dp"-->
+        <!--android:layout_marginRight="80dp"-->
+        <!--android:hint="Birthday (mm/dd/yyyy)"-->
+        <!--android:inputType="date" />-->
 
     <Button
         android:layout_marginTop="16dp"
@@ -68,7 +70,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:text="Register" />
+        android:text="NEXT" />
 
 
 </LinearLayout>

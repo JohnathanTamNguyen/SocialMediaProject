@@ -6,4 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".register_birthday">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Date of Birth"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="120dp"
+            android:layout_marginBottom="32dp"
+            android:textSize="32sp"/>
+
+        <DatePicker
+            android:id="@+id/register_date_of_birth"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner" />
+
+        <Button
+            android:layout_marginTop="16dp"
+            android:id="@+id/register_birthday_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:text="NEXT" />
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
