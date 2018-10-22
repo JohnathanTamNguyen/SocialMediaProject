@@ -32,6 +32,17 @@
         android:layout_marginRight="80dp"
         android:hint="example@email.com" />
 
+    <TextView
+        android:id="@+id/register_password_rules"
+        android:layout_width="270sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        android:textColor="#ff0000"
+        android:textAlignment="center"
+        android:text="Your password must have at least 8 letters, numbers and symbols(such as !,$,?)"/>
+
     <EditText
         android:id="@+id/register_password"
         android:layout_marginTop="16dp"
@@ -42,6 +53,18 @@
         android:inputType="textPassword"
         android:hint="Password" />
 
+    <TextView
+        android:id="@+id/register_password_match"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        android:textColor="#ff0000"
+        android:textAlignment="center"
+        android:text="Your password does not match"/>
+
+
     <EditText
         android:id="@+id/register_confirm_password"
         android:layout_marginTop="16dp"
@@ -51,16 +74,6 @@
         android:layout_marginRight="80dp"
         android:inputType="textPassword"
         android:hint="Confirm Password" />
-
-    <!--<EditText-->
-        <!--android:id="@+id/date_of_birth"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="80dp"-->
-        <!--android:layout_marginRight="80dp"-->
-        <!--android:hint="Birthday (mm/dd/yyyy)"-->
-        <!--android:inputType="date" />-->
 
     <Button
         android:layout_marginTop="16dp"

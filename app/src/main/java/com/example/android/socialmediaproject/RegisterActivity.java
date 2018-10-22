@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -20,8 +21,11 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -30,7 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     EditText passwordConfirm;
-    EditText dateOfBirth;
+    TextView registerPasswordMatch;
+    TextView registerPasswordRules;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,78 +47,46 @@ public class RegisterActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.register_email);
         password = (EditText) findViewById(R.id.register_password);
         passwordConfirm = (EditText) findViewById(R.id.register_confirm_password);
-//        dateOfBirth = (EditText) findViewById(R.id.date_of_birth);
-
-//        dateOfBirth.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                if(s.length() == 2 || s.length() == 5){
-//                    dateOfBirth.setText(s + "/");
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
+        registerPasswordMatch = (TextView) findViewById(R.id.register_password_match);
+        registerPasswordRules = (TextView) findViewById(R.id.register_password_rules);
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //changeActivity(RegisterActivity.this, register_birthday.class);
-                //sendRegisterInfo(username, email, password, passwordConfirm, dateOfBirth);
-                Intent intent = new Intent(RegisterActivity.this, register_birthday.class);
-                HashMap<String, String> params = new HashMap<String, String>();
-                params.put("email", email.getText().toString());
-                params.put("username", username.getText().toString());
-                params.put("password", password.getText().toString());
-                intent.putExtra("userData", params);
-                startActivity(intent);
+                if(passwordRulesNotMet(password)){
+                    registerPasswordRules.setVisibility(View.VISIBLE);
+                    return;
+                }
+                if(!password.getText().toString().equals(passwordConfirm.getText().toString())){
+                    registerPasswordMatch.setVisibility(View.VISIBLE);
+
+                } else {
+                    Intent intent = new Intent(RegisterActivity.this, register_birthday.class);
+                    HashMap<String, String> params = new HashMap<String, String>();
+                    params.put("email", email.getText().toString());
+                    params.put("username", username.getText().toString());
+                    params.put("password", password.getText().toString());
+                    intent.putExtra("userData", params);
+                    startActivity(intent);
+                }
             }
         });
     }
 
-    //Function used for changing activities
-    public void changeActivity(Activity thisActivity, Class nextActivity){
-        Intent intent = new Intent(thisActivity, nextActivity);
-        startActivity(intent);
+    private boolean passwordRulesNotMet(EditText userPassword) {
+        String password = userPassword.getText().toString();
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9]*");
+        Matcher matcher = pattern.matcher(password);
+        if(password.length() < 8){
+            return true;
+        } else if(password.isEmpty()){
+            return true;
+        } else if(matcher.matches()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public void sendRegisterInfo(EditText username, EditText email, EditText password, EditText passwordConfirm, EditText date_of_birth) {
-//        if(password.getText().toString() != passwordConfirm.getText().toString()){
-//            Toast.makeText(RegisterActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();
-//        }
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://social-media-project.herokuapp.com/register";
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("email", email.getText().toString());
-        params.put("username", username.getText().toString());
-        params.put("password", password.getText().toString());
-        params.put("passwordConfirm", passwordConfirm.getText().toString());
-        params.put("date_of_birth", date_of_birth.getText().toString());
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        //Log.v("LoginActivity", "It works!");
-                        changeActivity(RegisterActivity.this, LoginActivity.class);
-                        Log.v("RegisterActivity", response.toString());
-                        Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //Log.v("LoginActivity", error.toString());
-                        Toast.makeText(RegisterActivity.this, "Form incorrect", Toast.LENGTH_SHORT).show();
-                    }
-                });
-        queue.add(jsonObjectRequest);
-    }
 }
+
